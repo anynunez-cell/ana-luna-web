@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const eventos = [
+  {
+    anio: 2024,
+    items: [
+      {
+        tipo: 'Festival',
+        nombre: 'Festival Internacional de Poesía de Montreal',
+        rol: 'Participante — lectura de poesía',
+        lugar: 'Montreal, QC',
+      },
+      {
+        tipo: 'Salón del libro',
+        nombre: 'Salon du livre de Québec',
+        rol: 'Mesa redonda: La poesía en la diáspora',
+        lugar: 'Quebec, QC',
+      },
+    ],
+  },
+  {
+    anio: 2023,
+    items: [
+      {
+        tipo: 'Mediación cultural',
+        nombre: 'Taller de escritura creativa',
+        rol: 'Coordinación y facilitación',
+        lugar: 'Quebec, QC',
+      },
+    ],
+  },
+];
+---
+
+<Layout title="Colaboraciones y eventos" description="Participaciones en festivales, salones del libro y mediación cultural de Ana Luna.">
+
+  <h1 class="section-title">Colaboraciones y eventos</h1>
+  <hr class="section-divider" />
+
+  <p class="page-intro">
+    Participaciones en festivales internacionales, salones del libro, mesas redondas
+    y proyectos de mediación cultural.
+  </p>
+
+  <div class="eventos-lista">
+    {eventos.map((grupo) => (
+      <div class="anio-grupo">
+        <h2 class="anio-titulo">{grupo.anio}</h2>
+        <ul class="eventos-items">
+          {grupo.items.map((ev) => (
+            <li class="evento-item">
+              <span class="evento-tipo">{ev.tipo}</span>
+              <h3 class="evento-nombre">{ev.nombre}</h3>
+              <p class="evento-rol">{ev.rol}</p>
+              <p class="evento-lugar">{ev.lugar}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+</Layout>
+
+<style>
+  .page-intro {
+    max-width: 620px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 1rem;
+  }
+  .anio-grupo {
+    margin-bottom: 3rem;
+  }
+  .anio-titulo {
+    font-size: 1.4rem;
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+  .eventos-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .evento-item {
+    border-left: 3px solid var(--color-secondary);
+    padding-left: 1.25rem;
+  }
+  .evento-tipo {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    margin-bottom: 0.2rem;
+  }
+  .evento-nombre {
+    font-size: 1.15rem;
+    margin: 0.1rem 0 0.2rem;
+  }
+  .evento-rol {
+    font-size: 0.95rem;
+    margin: 0 0 0.1rem;
+    color: var(--color-text);
+  }
+  .evento-lugar {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin: 0;
+  }
+</style>

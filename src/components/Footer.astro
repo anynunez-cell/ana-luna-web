@@ -1,0 +1,75 @@
+---
+import { SITE_TITLE, SITE_AUTHOR_FORMAL, SUBSTACK_URL } from '../consts';
+const today = new Date();
+---
+
+<footer>
+	<div class="footer-inner">
+		<div class="footer-brand">
+			<p class="footer-name">{SITE_TITLE}</p>
+			<p class="footer-formal">{SITE_AUTHOR_FORMAL}</p>
+			<p class="footer-tagline">Escritora · Quebec, Canadá</p>
+		</div>
+		<nav class="footer-nav">
+			<a href="/">Inicio</a>
+			<a href="/libros">Libros</a>
+			<a href="/colaboraciones">Colaboraciones</a>
+			<a href="/contacto">Contacto</a>
+			<a href={SUBSTACK_URL} target="_blank" rel="noopener">Substack ↗</a>
+		</nav>
+	</div>
+	<div class="footer-bottom">
+		<p>&copy; {today.getFullYear()} {SITE_AUTHOR_FORMAL}. Todos los derechos reservados.</p>
+	</div>
+</footer>
+
+<style>
+	footer {
+		background: var(--color-primary);
+		color: rgba(250, 248, 255, 0.75);
+		margin-top: 4rem;
+	}
+	.footer-inner {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: 3rem 2rem 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+	.footer-name {
+		font-family: var(--font-heading);
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: var(--color-bg);
+		margin: 0 0 0.1rem;
+	}
+	.footer-formal {
+		font-size: 0.85rem;
+		color: rgba(250,248,255,0.55);
+		margin: 0 0 0.4rem;
+		font-style: italic;
+	}
+	.footer-tagline { margin: 0; font-size: 0.9rem; }
+	.footer-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.5rem;
+		align-items: flex-start;
+	}
+	.footer-nav a {
+		color: rgba(250, 248, 255, 0.75);
+		font-size: 0.95rem;
+		transition: color 0.2s;
+	}
+	.footer-nav a:hover { color: var(--color-accent); }
+	.footer-bottom {
+		border-top: 1px solid rgba(255,255,255,0.1);
+		text-align: center;
+		padding: 1rem 2rem;
+		font-size: 0.85rem;
+	}
+	.footer-bottom p { margin: 0; }
+</style>

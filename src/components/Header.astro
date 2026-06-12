@@ -1,0 +1,123 @@
+---
+import { SITE_TITLE } from '../consts';
+---
+
+<header>
+	<nav>
+		<a href="/" class="logo">
+			<span class="logo-name">{SITE_TITLE}</span>
+			<span class="logo-sub">escritora</span>
+		</a>
+		<button class="menu-toggle" aria-label="Abrir menú" id="menu-toggle">
+			<span></span><span></span><span></span>
+		</button>
+		<ul class="nav-links" id="nav-links">
+			<li><a href="/">Inicio</a></li>
+			<li><a href="/libros">Libros</a></li>
+			<li><a href="/colaboraciones">Colaboraciones</a></li>
+			<li><a href="/contacto">Contacto</a></li>
+		</ul>
+	</nav>
+</header>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const links = document.getElementById('nav-links');
+	toggle?.addEventListener('click', () => {
+		links?.classList.toggle('open');
+	});
+</script>
+
+<style>
+	header {
+		background: var(--color-primary);
+		padding: 0 2rem;
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: var(--max-width);
+		margin: 0 auto;
+		height: 64px;
+	}
+	.logo {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.1;
+		gap: 0;
+		color: var(--color-bg);
+		transition: color 0.2s;
+	}
+	.logo:hover .logo-name { color: var(--color-accent); }
+	.logo-name {
+		font-family: var(--font-heading);
+		font-size: 1.45rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		transition: color 0.2s;
+	}
+	.logo-sub {
+		font-family: var(--font-body);
+		font-size: 0.7rem;
+		font-weight: 300;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: rgba(250,248,255,0.6);
+	}
+	.nav-links {
+		display: flex;
+		gap: 0.25rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.nav-links a {
+		color: rgba(250, 248, 255, 0.85);
+		padding: 0.5rem 0.85rem;
+		border-radius: 4px;
+		font-size: 0.95rem;
+		letter-spacing: 0.03em;
+		transition: background 0.2s, color 0.2s;
+	}
+	.nav-links a:hover {
+		color: var(--color-accent);
+		background: rgba(255,255,255,0.08);
+	}
+	.menu-toggle {
+		display: none;
+		flex-direction: column;
+		gap: 5px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 4px;
+	}
+	.menu-toggle span {
+		display: block;
+		width: 24px;
+		height: 2px;
+		background: var(--color-bg);
+		border-radius: 2px;
+	}
+	@media (max-width: 768px) {
+		.menu-toggle { display: flex; }
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 64px;
+			left: 0;
+			right: 0;
+			background: var(--color-primary);
+			flex-direction: column;
+			padding: 1rem 2rem 1.5rem;
+			gap: 0.25rem;
+			box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+		}
+		.nav-links.open { display: flex; }
+	}
+</style>
