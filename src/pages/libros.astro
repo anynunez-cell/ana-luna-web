@@ -3,20 +3,40 @@ import Layout from '../layouts/Layout.astro';
 
 const libros = [
   {
-    titulo: 'Título del libro 1',
-    anio: 2024,
-    editorial: 'Cristálida Ediciones',
-    descripcion: 'Descripción breve del libro. Añade aquí el texto que quieras mostrar sobre esta obra.',
-    portada: '/images/libros/libro-1.jpg',
-    amazon: 'https://amazon.com',
+    titulo: 'Crónicas domésticas',
+    anio: null,
+    editorial: null,
+    descripcion: 'Con prólogo de Reyna Esperanza Cruz.',
+    portada: '/images/libros/cronicas-domesticas.jpg',
+    compra: 'https://www.amazon.ca/-/fr/Cr%C3%B3nicas-dom%C3%A9sticas-Ana-Nunez-Gonzalez/dp/B09S5ZNBM8/',
+    compraLabel: 'Comprar en Amazon ↗',
   },
   {
-    titulo: 'Título del libro 2',
-    anio: 2021,
-    editorial: 'Editorial X',
-    descripcion: 'Descripción breve del libro. Añade aquí el texto que quieras mostrar sobre esta obra.',
-    portada: '/images/libros/libro-2.jpg',
-    amazon: 'https://amazon.com',
+    titulo: 'Mujeres rotas',
+    anio: null,
+    editorial: null,
+    descripcion: '',
+    portada: '/images/libros/mujeres-rotas.jpg',
+    compra: 'https://www.amazon.ca/-/fr/Mujeres-rotas-Ana-Luna/dp/292544640X/',
+    compraLabel: 'Comprar en Amazon ↗',
+  },
+  {
+    titulo: 'Adela y el poder',
+    anio: null,
+    editorial: 'Cristálida Ediciones',
+    descripcion: '',
+    portada: '/images/libros/adela-y-el-poder.jpg',
+    compra: 'https://lasamericas.ca/fr/produits/36847/adela-y-el-poder-cristalida',
+    compraLabel: 'Comprar en Las Américas Bookstore ↗',
+  },
+  {
+    titulo: 'Adela et le pouvoir',
+    anio: null,
+    editorial: null,
+    descripcion: 'Mémoires d\'une procureure à La Havane.',
+    portada: '/images/libros/adela-et-le-pouvoir.jpg',
+    compra: 'https://www.amazon.ca/-/fr/Ad%C3%A8la-pouvoir-M%C3%A9moires-procureure-Havane/dp/2925321836/',
+    compraLabel: 'Comprar en Amazon ↗',
   },
 ];
 ---
@@ -34,11 +54,15 @@ const libros = [
         </div>
         <div class="libro-info">
           <h2 class="libro-titulo">{libro.titulo}</h2>
-          <p class="libro-meta">{libro.editorial} · {libro.anio}</p>
-          <p class="libro-desc">{libro.descripcion}</p>
-          {libro.amazon && (
-            <a href={libro.amazon} target="_blank" rel="noopener" class="btn btn-primary">
-              Comprar en Amazon ↗
+          {(libro.editorial || libro.anio) && (
+            <p class="libro-meta">
+              {[libro.editorial, libro.anio].filter(Boolean).join(' · ')}
+            </p>
+          )}
+          {libro.descripcion && <p class="libro-desc">{libro.descripcion}</p>}
+          {libro.compra && (
+            <a href={libro.compra} target="_blank" rel="noopener" class="btn btn-primary">
+              {libro.compraLabel}
             </a>
           )}
         </div>
