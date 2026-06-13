@@ -7,6 +7,8 @@ const libros = [
     anio: null,
     editorial: null,
     descripcion: 'Con prólogo de Reyna Esperanza Cruz.',
+    cita: '«Una joya de la narrativa breve que convierte lo cotidiano en una fuente inagotable de revelaciones.»',
+    citaFuente: 'Hablemos Escritoras, noviembre 2025',
     portada: '/images/libros/cronicas-domesticas.jpg',
     compra: 'https://www.amazon.ca/-/fr/Cr%C3%B3nicas-dom%C3%A9sticas-Ana-Nunez-Gonzalez/dp/B09S5ZNBM8/',
     compraLabel: 'Comprar en Amazon ↗',
@@ -69,6 +71,12 @@ const libros = [
             </p>
           )}
           {libro.descripcion && <p class="libro-desc">{libro.descripcion}</p>}
+          {libro.cita && (
+            <blockquote class="libro-cita">
+              <p>{libro.cita}</p>
+              {libro.citaFuente && <footer class="libro-cita-fuente">— {libro.citaFuente}</footer>}
+            </blockquote>
+          )}
           {libro.compra && (
             <a href={libro.compra} target="_blank" rel="noopener" class="btn btn-primary">
               {libro.compraLabel}
@@ -122,6 +130,24 @@ const libros = [
   .libro-desc {
     font-size: 1rem;
     line-height: 1.75;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .libro-cita {
+    margin: 0 0 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-accent);
+  }
+  .libro-cita p {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin: 0 0 0.3rem;
+  }
+  .libro-cita-fuente {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    font-style: normal;
   }
 </style>
