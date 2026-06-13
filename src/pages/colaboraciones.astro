@@ -61,9 +61,83 @@ const eventos = [
     ))}
   </div>
 
+  <!-- Comunidades literarias -->
+  <section class="extra-seccion">
+    <h2 class="extra-titulo">Comunidades literarias</h2>
+    <ul class="extra-lista">
+      <li class="extra-item">
+        <h3 class="extra-nombre">Club de escritura Fuentetaja</h3>
+        <p class="extra-desc">Un club de escritura abierto a todos con concursos y lecturas. Puedes leer algunos de mis cuentos y participar.</p>
+        <a href="https://clubdeescritura.com/perfil/178035/ana-luna-2/#folder-220821" target="_blank" rel="noopener" class="extra-enlace">Ver perfil ↗</a>
+      </li>
+      <li class="extra-item">
+        <h3 class="extra-nombre">Proyecto Sherezade — Universidad de Manitoba</h3>
+        <p class="extra-desc">Un proyecto donde puedes leer cuentos de todo el mundo de habla hispana y enviar tus propias colaboraciones. He tenido el honor de colaborar con ellos.</p>
+        <a href="https://home.cc.umanitoba.ca/~fernand4/index.html" target="_blank" rel="noopener" class="extra-enlace">Visitar proyecto ↗</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Ferias del libro -->
+  <section class="extra-seccion">
+    <h2 class="extra-titulo">Ferias del libro</h2>
+    <ul class="extra-lista">
+      <li class="extra-item">
+        <h3 class="extra-nombre">Feria del libro Ser y estar en español — Quebec</h3>
+        <p class="extra-desc">Feria que celebra la lengua española en Quebec. Participé en la edición de abril.</p>
+        <a href="https://www.seryestar.ca/événements" target="_blank" rel="noopener" class="extra-enlace">Ver eventos ↗</a>
+      </li>
+      <li class="extra-item">
+        <h3 class="extra-nombre">Feria Internacional del Libro de La Habana</h3>
+        <p class="extra-desc">La feria que llevo siempre en el corazón. El Encuentro de Jóvenes Escritores de Iberoamérica es uno de sus eventos más especiales.</p>
+      </li>
+    </ul>
+  </section>
+
 </Layout>
 
 <style>
+  .extra-seccion {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(61,43,107,0.12);
+  }
+  .extra-titulo {
+    font-size: 1.4rem;
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+  .extra-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .extra-item {
+    border-left: 3px solid var(--color-secondary);
+    padding-left: 1.25rem;
+  }
+  .extra-nombre {
+    font-size: 1.15rem;
+    margin: 0 0 0.3rem;
+  }
+  .extra-desc {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0 0 0.5rem;
+    line-height: 1.65;
+  }
+  .extra-enlace {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  .extra-enlace:hover { color: var(--color-accent); }
   .page-intro {
     max-width: 620px;
     margin: 0 auto 3rem;
