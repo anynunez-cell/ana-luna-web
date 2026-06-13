@@ -3,192 +3,306 @@ import Layout from '../layouts/Layout.astro';
 
 const eventos = [
   {
-    anio: 2024,
-    items: [
-      {
-        tipo: 'Festival',
-        nombre: 'Festival Internacional de Poesía de Montreal',
-        rol: 'Participante — lectura de poesía',
-        lugar: 'Montreal, QC',
-      },
-      {
-        tipo: 'Salón del libro',
-        nombre: 'Salon du livre de Québec',
-        rol: 'Mesa redonda: La poesía en la diáspora',
-        lugar: 'Quebec, QC',
-      },
+    fecha: 'Octubre 2026',
+    nombre: 'Feria Iberoamericana del Libro en Canadá',
+    lugar: 'Ottawa',
+    participacion: [
+      'Presentación de La flor por nacer (primera antología cubano-canadiense) y Picadillo a la miseria.',
+      'Stand de Cristálida Ediciones como editorial expositora.',
     ],
+    enlace: 'https://www.filibrocanada.com',
+    proximo: true,
   },
   {
-    anio: 2023,
-    items: [
-      {
-        tipo: 'Mediación cultural',
-        nombre: 'Taller de escritura creativa',
-        rol: 'Coordinación y facilitación',
-        lugar: 'Quebec, QC',
-      },
+    fecha: 'Junio 2026',
+    nombre: 'Festival Littéraire des Îles — Portages',
+    lugar: 'Îles-de-la-Madeleine, Quebec',
+    participacion: [
+      'Animadora de la conferencia «Mers jumelles: imaginaires insulaires croisés entre les Îles-de-la-Madeleine et Cuba».',
+      'Lectura en el evento de apertura.',
+      'Cercle d\'autrices junto a Naomi Fontaine, Juli Delporte y Claire Vigneau.',
+      'Lectura infantil de Cuentos para Bárbara de Reyna Esperanza Cruz.',
     ],
+    enlace: 'https://www.sitedelacote.ca/portages',
+    proximo: true,
+  },
+  {
+    fecha: '2024',
+    nombre: 'FILibro Canadá',
+    lugar: null,
+    participacion: [
+      'Cristálida Ediciones como editorial expositora.',
+    ],
+    enlace: 'https://www.filibrocanada.com/cristalida-ediciones.html',
+    proximo: false,
+  },
+  {
+    fecha: '2024',
+    nombre: 'Feria del libro Ser y estar en español',
+    lugar: 'Quebec',
+    participacion: [
+      'Feria que celebra la lengua española en Quebec.',
+    ],
+    enlace: 'https://www.seryestar.ca/événements',
+    proximo: false,
+  },
+  {
+    fecha: null,
+    nombre: 'Feria Internacional del Libro de La Habana',
+    lugar: null,
+    participacion: [
+      'La feria que llevo siempre en el corazón.',
+    ],
+    enlace: null,
+    proximo: false,
+  },
+];
+
+const medios = [
+  {
+    medio: 'Hablemos Escritoras',
+    descripcion: 'Podcast y enciclopedia de escritoras en español',
+    cita: '«Crónicas domésticas es una joya de la narrativa breve que convierte lo cotidiano en una fuente inagotable de revelaciones.»',
+    detalles: 'Minireseña publicada en noviembre 2025. También disponible: Episodio 673 del podcast.',
+    enlaces: [
+      { label: 'Ver reseña', url: 'https://www.hablemosescritoras.org/posts/7351' },
+      { label: 'Perfil completo', url: 'https://www.hablemosescritoras.org/writers/4810' },
+    ],
+  },
+];
+
+const comunidades = [
+  {
+    nombre: 'Club de escritura Fuentetaja',
+    descripcion: 'Un club de escritura abierto a todos con concursos y lecturas. Puedes leer algunos de mis cuentos y participar.',
+    enlace: 'https://clubdeescritura.com/perfil/178035/ana-luna-2/#folder-220821',
+    enlaceLabel: 'Ver perfil ↗',
+  },
+  {
+    nombre: 'Proyecto Sherezade — Universidad de Manitoba',
+    descripcion: 'Un proyecto donde puedes leer cuentos de todo el mundo de habla hispana y enviar tus propias colaboraciones. He tenido el honor de colaborar con ellos.',
+    enlace: 'https://home.cc.umanitoba.ca/~fernand4/index.html',
+    enlaceLabel: 'Visitar proyecto ↗',
   },
 ];
 ---
 
-<Layout title="Colaboraciones y eventos" description="Participaciones en festivales, salones del libro y mediación cultural de Ana Luna.">
+<Layout title="Colaboraciones y eventos" description="Eventos, prensa y comunidades literarias de Ana Luna — Ana Núñez González.">
 
   <h1 class="section-title">Colaboraciones y eventos</h1>
   <hr class="section-divider" />
 
-  <p class="page-intro">
-    Participaciones en festivales internacionales, salones del libro, mesas redondas
-    y proyectos de mediación cultural.
-  </p>
-
-  <div class="eventos-lista">
-    {eventos.map((grupo) => (
-      <div class="anio-grupo">
-        <h2 class="anio-titulo">{grupo.anio}</h2>
-        <ul class="eventos-items">
-          {grupo.items.map((ev) => (
-            <li class="evento-item">
-              <span class="evento-tipo">{ev.tipo}</span>
-              <h3 class="evento-nombre">{ev.nombre}</h3>
-              <p class="evento-rol">{ev.rol}</p>
-              <p class="evento-lugar">{ev.lugar}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
-  </div>
-
-  <!-- Comunidades literarias -->
-  <section class="extra-seccion">
-    <h2 class="extra-titulo">Comunidades literarias</h2>
-    <ul class="extra-lista">
-      <li class="extra-item">
-        <h3 class="extra-nombre">Club de escritura Fuentetaja</h3>
-        <p class="extra-desc">Un club de escritura abierto a todos con concursos y lecturas. Puedes leer algunos de mis cuentos y participar.</p>
-        <a href="https://clubdeescritura.com/perfil/178035/ana-luna-2/#folder-220821" target="_blank" rel="noopener" class="extra-enlace">Ver perfil ↗</a>
-      </li>
-      <li class="extra-item">
-        <h3 class="extra-nombre">Proyecto Sherezade — Universidad de Manitoba</h3>
-        <p class="extra-desc">Un proyecto donde puedes leer cuentos de todo el mundo de habla hispana y enviar tus propias colaboraciones. He tenido el honor de colaborar con ellos.</p>
-        <a href="https://home.cc.umanitoba.ca/~fernand4/index.html" target="_blank" rel="noopener" class="extra-enlace">Visitar proyecto ↗</a>
-      </li>
-    </ul>
+  <!-- SECCIÓN 1: EVENTOS -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">Eventos y participaciones</h2>
+    <div class="eventos-lista">
+      {eventos.map((ev) => (
+        <article class="evento-card">
+          <div class="evento-fecha-col">
+            {ev.fecha && <span class="evento-fecha">{ev.fecha}</span>}
+            {ev.proximo && <span class="evento-badge">Próximo</span>}
+          </div>
+          <div class="evento-info">
+            <h3 class="evento-nombre">{ev.nombre}</h3>
+            {ev.lugar && <p class="evento-lugar">{ev.lugar}</p>}
+            <ul class="evento-participacion">
+              {ev.participacion.map((p) => <li>{p}</li>)}
+            </ul>
+            {ev.enlace && (
+              <a href={ev.enlace} target="_blank" rel="noopener" class="evento-link">Ver evento ↗</a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
   </section>
 
-  <!-- Ferias del libro -->
-  <section class="extra-seccion">
-    <h2 class="extra-titulo">Ferias del libro</h2>
-    <ul class="extra-lista">
-      <li class="extra-item">
-        <h3 class="extra-nombre">Feria del libro Ser y estar en español — Quebec</h3>
-        <p class="extra-desc">Feria que celebra la lengua española en Quebec. Participé en la edición de abril.</p>
-        <a href="https://www.seryestar.ca/événements" target="_blank" rel="noopener" class="extra-enlace">Ver eventos ↗</a>
-      </li>
-      <li class="extra-item">
-        <h3 class="extra-nombre">Feria Internacional del Libro de La Habana</h3>
-        <p class="extra-desc">La feria que llevo siempre en el corazón. El Encuentro de Jóvenes Escritores de Iberoamérica es uno de sus eventos más especiales.</p>
-      </li>
+  <!-- SECCIÓN 2: EN LOS MEDIOS -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">En los medios</h2>
+    <div class="medios-grid">
+      {medios.map((item) => (
+        <article class="medio-card">
+          <p class="medio-nombre">{item.medio}</p>
+          <p class="medio-desc">{item.descripcion}</p>
+          {item.cita && <blockquote class="medio-cita">{item.cita}</blockquote>}
+          <p class="medio-detalles">{item.detalles}</p>
+          <div class="medio-enlaces">
+            {item.enlaces.map((e) => (
+              <a href={e.url} target="_blank" rel="noopener" class="btn btn-outline btn-sm">{e.label} ↗</a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: COMUNIDADES LITERARIAS -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">Comunidades literarias</h2>
+    <ul class="comunidades-lista">
+      {comunidades.map((c) => (
+        <li class="comunidad-item">
+          <h3 class="comunidad-nombre">{c.nombre}</h3>
+          <p class="comunidad-desc">{c.descripcion}</p>
+          <a href={c.enlace} target="_blank" rel="noopener" class="evento-link">{c.enlaceLabel}</a>
+        </li>
+      ))}
     </ul>
   </section>
 
 </Layout>
 
 <style>
-  .extra-seccion {
-    margin-top: 3.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(61,43,107,0.12);
+  .bloque {
+    margin-bottom: 4rem;
   }
-  .extra-titulo {
-    font-size: 1.4rem;
-    color: var(--color-accent);
+  .bloque-titulo {
+    font-size: 1.5rem;
+    color: var(--color-primary);
     border-bottom: 2px solid var(--color-accent);
     padding-bottom: 0.4rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
     display: inline-block;
   }
-  .extra-lista {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+
+  /* Eventos */
+  .eventos-lista {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
   }
-  .extra-item {
-    border-left: 3px solid var(--color-secondary);
-    padding-left: 1.25rem;
+  .evento-card {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(61,43,107,0.12);
   }
-  .extra-nombre {
-    font-size: 1.15rem;
-    margin: 0 0 0.3rem;
+  .evento-card:last-child { border-bottom: none; }
+  @media (max-width: 600px) {
+    .evento-card { grid-template-columns: 1fr; gap: 0.5rem; }
   }
-  .extra-desc {
-    font-size: 0.95rem;
-    color: var(--color-text);
-    margin: 0 0 0.5rem;
-    line-height: 1.65;
+  .evento-fecha-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 0.15rem;
   }
-  .extra-enlace {
-    font-size: 0.88rem;
+  .evento-fecha {
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--color-secondary);
+    line-height: 1.3;
   }
-  .extra-enlace:hover { color: var(--color-accent); }
-  .page-intro {
-    max-width: 620px;
-    margin: 0 auto 3rem;
-    text-align: center;
-    color: var(--color-muted);
-    font-size: 1rem;
-  }
-  .anio-grupo {
-    margin-bottom: 3rem;
-  }
-  .anio-titulo {
-    font-size: 1.4rem;
-    color: var(--color-accent);
-    border-bottom: 2px solid var(--color-accent);
-    padding-bottom: 0.4rem;
-    margin-bottom: 1.5rem;
+  .evento-badge {
     display: inline-block;
-  }
-  .eventos-items {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .evento-item {
-    border-left: 3px solid var(--color-secondary);
-    padding-left: 1.25rem;
-  }
-  .evento-tipo {
-    display: inline-block;
-    font-size: 0.75rem;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-secondary);
-    margin-bottom: 0.2rem;
+    padding: 0.18rem 0.45rem;
+    border-radius: 3px;
+    align-self: flex-start;
   }
   .evento-nombre {
     font-size: 1.15rem;
-    margin: 0.1rem 0 0.2rem;
-  }
-  .evento-rol {
-    font-size: 0.95rem;
-    margin: 0 0 0.1rem;
-    color: var(--color-text);
+    margin: 0 0 0.2rem;
   }
   .evento-lugar {
     font-size: 0.85rem;
     color: var(--color-muted);
+    margin: 0 0 0.6rem;
+  }
+  .evento-participacion {
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+  .evento-participacion li { margin-bottom: 0.25rem; }
+  .evento-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  .evento-link:hover { color: var(--color-accent); }
+
+  /* Medios */
+  .medios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .medio-card {
+    border: 1px solid rgba(61,43,107,0.15);
+    border-radius: 8px;
+    padding: 1.5rem 1.75rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .medio-nombre {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-primary);
     margin: 0;
+  }
+  .medio-desc {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin: 0;
+    font-style: italic;
+  }
+  .medio-cita {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-accent);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+  .medio-detalles {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+  .medio-enlaces {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .btn-sm { padding: 0.45rem 1rem; font-size: 0.82rem; }
+
+  /* Comunidades */
+  .comunidades-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .comunidad-item {
+    border-left: 3px solid var(--color-secondary);
+    padding-left: 1.25rem;
+  }
+  .comunidad-nombre {
+    font-size: 1.15rem;
+    margin: 0 0 0.3rem;
+  }
+  .comunidad-desc {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0 0 0.5rem;
+    line-height: 1.65;
   }
 </style>
