@@ -15,7 +15,7 @@ export type Lang = keyof typeof ui;
 
 export const routes = {
   es: { home: '/', books: '/libros', collab: '/colaboraciones', contact: '/contacto' },
-  fr: { home: '/fr/', books: '/libros', collab: '/fr/presse-collaborations', contact: '/fr/contact' },
+  fr: { home: '/fr/', books: '/fr/livres', collab: '/fr/presse-collaborations', contact: '/fr/contact' },
 };
 
 /** Given the current pathname, return the URL in the other language. */
@@ -26,6 +26,8 @@ export function getAlternateUrl(pathname: string): string {
     '/colaboraciones': '/fr/presse-collaborations',
     '/fr/presse-collaborations': '/colaboraciones',
     '/fr/presse': '/colaboraciones',
+    '/libros': '/fr/livres',
+    '/fr/livres': '/libros',
     '/contacto': '/fr/contact',
     '/fr/contact': '/contacto',
   };

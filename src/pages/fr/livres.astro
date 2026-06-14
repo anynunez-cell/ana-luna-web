@@ -1,18 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { libros } from '../data/libros';
+import Layout from '../../layouts/Layout.astro';
+import { libros } from '../../data/libros';
 ---
 
-<Layout title="Libros" description="Libros publicados por Ana Luna — Ana Núñez González.">
+<Layout title="Livres" description="Livres publiés par Ana Luna — Ana Núñez González.">
 
-  <h1 class="section-title">Libros</h1>
+  <h1 class="section-title">Livres</h1>
   <hr class="section-divider" />
 
   <div class="libros-grid">
     {libros.map((libro) => (
       <article class="libro-card">
         <div class="libro-portada">
-          <img src={libro.portada} alt={`Portada de ${libro.titulo}`} />
+          <img src={libro.portada} alt={`Couverture de ${libro.titulo}`} />
         </div>
         <div class="libro-info">
           <h2 class="libro-titulo">{libro.titulo}</h2>
@@ -21,7 +21,7 @@ import { libros } from '../data/libros';
               {[libro.editorial, libro.anio].filter(Boolean).join(' · ')}
             </p>
           )}
-          {libro.descripcion && <p class="libro-desc">{libro.descripcion}</p>}
+          {libro.description && <p class="libro-desc">{libro.description}</p>}
           {libro.cita && (
             <blockquote class="libro-cita">
               <p>{libro.cita}</p>
@@ -30,7 +30,7 @@ import { libros } from '../data/libros';
           )}
           {libro.compra && (
             <a href={libro.compra} target="_blank" rel="noopener" class="btn btn-primary">
-              {libro.compraLabel}
+              {libro.compraLabelFr}
             </a>
           )}
         </div>
