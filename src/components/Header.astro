@@ -1,22 +1,36 @@
 ---
 import { SITE_TITLE } from '../consts';
+import { ui, routes, getLang, getAlternateUrl } from '../i18n/ui';
+
+const pathname = Astro.url.pathname;
+const lang = getLang(pathname);
+const t = ui[lang];
+const r = routes[lang];
+const alternateUrl = getAlternateUrl(pathname);
 ---
 
 <header>
 	<nav>
-		<a href="/" class="logo">
+		<a href={r.home} class="logo">
 			<span class="logo-name">{SITE_TITLE}</span>
-			<span class="logo-sub">escritora</span>
+			<span class="logo-sub">{t.logoSub}</span>
 		</a>
-		<button class="menu-toggle" aria-label="Abrir menú" id="menu-toggle">
-			<span></span><span></span><span></span>
-		</button>
-		<ul class="nav-links" id="nav-links">
-			<li><a href="/">Inicio</a></li>
-			<li><a href="/libros">Libros</a></li>
-			<li><a href="/colaboraciones">Colaboraciones</a></li>
-			<li><a href="/contacto">Contacto</a></li>
-		</ul>
+		<div class="nav-right">
+			<button class="menu-toggle" aria-label="Abrir menú" id="menu-toggle">
+				<span></span><span></span><span></span>
+			</button>
+			<ul class="nav-links" id="nav-links">
+				<li><a href={r.home}>{t.nav.home}</a></li>
+				<li><a href={r.books}>{t.nav.books}</a></li>
+				<li><a href={r.collab}>{t.nav.collab}</a></li>
+				<li><a href={r.contact}>{t.nav.contact}</a></li>
+				<li class="lang-item">
+					<a href={alternateUrl} class="lang-switch" aria-label={`Switch to ${t.langLabel}`}>
+						{t.langLabel}
+					</a>
+				</li>
+			</ul>
+		</div>
 	</nav>
 </header>
 
@@ -69,12 +83,18 @@ import { SITE_TITLE } from '../consts';
 		text-transform: uppercase;
 		color: rgba(250,248,255,0.6);
 	}
+	.nav-right {
+		display: flex;
+		align-items: center;
+		gap: 0;
+	}
 	.nav-links {
 		display: flex;
 		gap: 0.25rem;
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		align-items: center;
 	}
 	.nav-links a {
 		color: rgba(250, 248, 255, 0.85);
@@ -87,6 +107,26 @@ import { SITE_TITLE } from '../consts';
 	.nav-links a:hover {
 		color: var(--color-accent);
 		background: rgba(255,255,255,0.08);
+	}
+	.lang-item {
+		margin-left: 0.5rem;
+		border-left: 1px solid rgba(255,255,255,0.18);
+		padding-left: 0.5rem;
+	}
+	.lang-switch {
+		font-size: 0.75rem !important;
+		font-weight: 700 !important;
+		letter-spacing: 0.12em !important;
+		text-transform: uppercase;
+		color: rgba(250,248,255,0.55) !important;
+		padding: 0.3rem 0.6rem !important;
+		border: 1px solid rgba(255,255,255,0.2);
+		border-radius: 3px;
+	}
+	.lang-switch:hover {
+		color: var(--color-accent) !important;
+		background: rgba(255,255,255,0.08) !important;
+		border-color: var(--color-accent) !important;
 	}
 	.menu-toggle {
 		display: none;
@@ -114,10 +154,20 @@ import { SITE_TITLE } from '../consts';
 			right: 0;
 			background: var(--color-primary);
 			flex-direction: column;
+			align-items: flex-start;
 			padding: 1rem 2rem 1.5rem;
 			gap: 0.25rem;
 			box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 		}
 		.nav-links.open { display: flex; }
+		.lang-item {
+			margin-left: 0;
+			border-left: none;
+			padding-left: 0;
+			border-top: 1px solid rgba(255,255,255,0.12);
+			padding-top: 0.5rem;
+			margin-top: 0.25rem;
+			width: 100%;
+		}
 	}
 </style>

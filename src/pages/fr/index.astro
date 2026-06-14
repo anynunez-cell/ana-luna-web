@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { SITE_AUTHOR_FORMAL, SUBSTACK_URL } from '../../consts';
+---
+
+<Layout title="Ana Luna — écrivaine" description="Écrivaine, médiatrice culturelle et éditrice. Québec, Canada.">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="/images/ana-luna.jpg" alt="Ana Luna" />
+    </div>
+    <div class="hero-text">
+      <p class="hero-label">écrivaine</p>
+      <h1>Ana Luna</h1>
+      <p class="hero-formal">{SITE_AUTHOR_FORMAL}</p>
+      <p class="hero-bio">
+        Écrivaine, médiatrice culturelle et éditrice. Née à Cuba, elle vit au Québec, Canada,
+        où elle dirige <a href="https://cristalidaediciones.com" target="_blank" rel="noopener">Cristálida Ediciones</a>.
+        Son écriture explore le déplacement, la mémoire et les liens entre langue et identité.
+      </p>
+      <div class="hero-actions">
+        <a href="/libros" class="btn btn-primary">Mes livres</a>
+        <a href={SUBSTACK_URL} target="_blank" rel="noopener" class="btn btn-outline">Substack ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="about-section">
+    <h2 class="section-title">À propos</h2>
+    <hr class="section-divider" />
+    <div class="about-text">
+      <p>
+        Écrire, rêver, vivre… Dans quel ordre les mettre&nbsp;?
+      </p>
+      <p>
+        C'est peut-être ce désir de mettre un peu d'ordre dans les choses qui m'a amenée à étudier le droit
+        à l'Université de La Havane, à travailler comme procureure, à fonder une famille — et puis quelqu'un
+        m'a parlé du Centro Onelio Jorge Cardoso. Je n'avais jamais écrit de fiction, j'écrivais des rapports,
+        ou plutôt — en réalité — j'avais bien écrit des histoires quand j'avais huit ou dix ans, mais disons
+        que ça ne compte pas. À partir de ce moment-là, quelque chose a changé dans mes priorités. Donner vie
+        à des personnages a commencé à m'intéresser autant que les cours que je suivais. Des nouvelles publiées
+        ici et là — au Brésil, à Cuba, en Espagne — m'ont fait croire que ces personnages méritaient peut-être
+        de vivre. Mais c'est en rêvant d'autres horizons pour moi et pour ma fille que j'ai décidé d'échanger
+        le sable contre la neige et la mer contre les grands lacs.
+      </p>
+      <p>
+        Aujourd'hui, je continue de vivre les rêves que j'écris, d'écrire la vie que je rêve, et de rêver
+        que je vis de ce que j'écris.
+      </p>
+      <p class="about-links">
+        <a href="/libros">Voir mes livres →</a>
+        &nbsp;·&nbsp;
+        <a href="/fr/presse">Presse et événements →</a>
+        &nbsp;·&nbsp;
+        <a href={SUBSTACK_URL} target="_blank" rel="noopener">Substack ↗</a>
+      </p>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem 0 4rem;
+  }
+  @media (max-width: 700px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-photo { margin: 0 auto; }
+    .hero-actions { justify-content: center; }
+  }
+  .hero-photo img {
+    width: 280px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: var(--box-shadow);
+  }
+  .hero-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.4rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    margin: 0 0 0.2rem;
+  }
+  .hero-formal {
+    font-size: 1rem;
+    color: var(--color-muted);
+    font-style: italic;
+    margin: 0 0 1.2rem;
+  }
+  .hero-bio {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    max-width: 540px;
+    margin-bottom: 1.8rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .about-section {
+    border-top: 1px solid rgba(61,43,107,0.12);
+    padding-top: 3.5rem;
+  }
+  .about-text {
+    max-width: 680px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  .about-links {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+</style>

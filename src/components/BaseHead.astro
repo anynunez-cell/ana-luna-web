@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getLang, getAlternateUrl } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -9,12 +10,19 @@ interface Props {
 
 const { title, description, image = '/og-image.png' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const lang = getLang(Astro.url.pathname);
+const alternatePath = getAlternateUrl(Astro.url.pathname);
+const alternateURL = new URL(alternatePath, Astro.site);
+const alternateLang = lang === 'es' ? 'fr' : 'es';
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="/favicon.ico" />
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" hreflang={lang} href={canonicalURL} />
+<link rel="alternate" hreflang={alternateLang} href={alternateURL} />
+<link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 <meta name="generator" content={Astro.generator} />
 <meta name="google-site-verification" content="Ny3NXMQvDOgd4RSHeoXqmbokXbp-IzOKL2sisHehsYw" />
 
