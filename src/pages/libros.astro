@@ -67,7 +67,10 @@ const libros = [
           <h2 class="libro-titulo">{libro.titulo}</h2>
           {(libro.editorial || libro.anio) && (
             <p class="libro-meta">
-              {[libro.editorial, libro.anio].filter(Boolean).join(' · ')}
+              {libro.editorial === 'Cristálida Ediciones'
+                ? <><a href="https://cristalidaediciones.com" target="_blank" rel="noopener">Cristálida Ediciones</a>{libro.anio ? ` · ${libro.anio}` : ''}</>
+                : [libro.editorial, libro.anio].filter(Boolean).join(' · ')
+              }
             </p>
           )}
           {libro.descripcion && <p class="libro-desc">{libro.descripcion}</p>}
