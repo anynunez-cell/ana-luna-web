@@ -1,0 +1,384 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const medias = [
+  {
+    media: 'La Presse',
+    date: 'Juin 2021',
+    titre: 'Promouvoir le français dans sa deuxième langue',
+    description: 'Portrait d\'Ana Núñez González comme modèle d\'intégration et de passion pour la langue française au Québec.',
+    lienLabel: 'Lire l\'article',
+    lien: null,
+  },
+  {
+    media: 'Radio-Canada · Première Escale',
+    date: null,
+    titre: 'Une néo-Madelinienne parle de son amour pour Jacques Poulin',
+    description: 'Entretien sur la littérature québécoise et la vie littéraire aux Îles-de-la-Madeleine.',
+    lienLabel: 'Écouter le segment',
+    lien: null,
+  },
+  {
+    media: 'Radio-Canada · Des matins en or',
+    date: null,
+    titre: 'Lectures de vacances avec Ana Núñez González',
+    description: 'Sélection de lectures estivales en ondes sur ICI Première.',
+    lienLabel: 'Écouter le segment',
+    lien: null,
+  },
+  {
+    media: 'L\'Actu · Télévision',
+    date: 'Décembre 2022',
+    titre: null,
+    description: 'Reportage sur Ana Núñez González et son travail de promotion de la littérature hispano-américaine au Québec.',
+    lienLabel: 'Voir le reportage',
+    lien: null,
+  },
+  {
+    media: 'L\'Indice bohémien',
+    date: 'Octobre 2020',
+    titre: 'Ana Nuñez Gonzalez : une histoire de livres et de région',
+    description: 'Article sur son travail à la Bibliothèque d\'Amos et son rôle dans l\'intégration culturelle par la littérature.',
+    lienLabel: 'Lire l\'article',
+    lien: null,
+  },
+];
+
+const evenements = [
+  {
+    date: '25–28 juin 2026',
+    nom: 'Festival littéraire des Îles · Portages',
+    lieu: 'Îles-de-la-Madeleine',
+    description: '10e édition · Présidence d\'honneur : Naomi Fontaine',
+    participation: [
+      'Conférence «Mers jumelles : imaginaires insulaires croisés entre les Îles-de-la-Madeleine et Cuba» (26 juin)',
+      'Lectures à la soirée d\'ouverture (26 juin, 19h30)',
+      'Cercle d\'autrices avec Naomi Fontaine (27 juin)',
+      'Lecture jeunesse bilingue français-espagnol (28 juin)',
+    ],
+    lienLabel: 'Voir la programmation complète',
+    lien: 'https://www.sitedelacote.ca/portages',
+    prochain: true,
+  },
+  {
+    date: 'Octobre 2026',
+    nom: 'Foire ibéro-américaine du livre du Canada',
+    lieu: 'Ottawa',
+    description: null,
+    participation: [
+      'Lancement de El árbol y la escarcha, première anthologie de littérature cubano-canadienne.',
+      'Lancement du roman Picadillo a la miseria.',
+    ],
+    lienLabel: null,
+    lien: null,
+    prochain: true,
+  },
+  {
+    date: '2024',
+    nom: 'Foire ibéro-américaine du livre du Canada',
+    lieu: 'Ottawa',
+    description: null,
+    participation: ['Participation avec Cristálida Éditions.'],
+    lienLabel: null,
+    lien: null,
+    prochain: false,
+  },
+  {
+    date: null,
+    nom: 'Festival de lettres L\'âge de l\'oiseau',
+    lieu: 'Ottawa',
+    description: null,
+    participation: ['Participation dans le cadre des activités littéraires francophones.'],
+    lienLabel: null,
+    lien: null,
+    prochain: false,
+  },
+  {
+    date: null,
+    nom: 'Salon du livre de l\'Abitibi-Témiscamingue',
+    lieu: null,
+    description: null,
+    participation: ['Participations régulières comme autrice et promotrice de la littérature hispano-américaine.'],
+    lienLabel: null,
+    lien: null,
+    prochain: false,
+  },
+  {
+    date: null,
+    nom: 'Foire internationale du livre de La Havane',
+    lieu: null,
+    description: null,
+    participation: ['Participation comme autrice et éditrice.'],
+    lienLabel: null,
+    lien: null,
+    prochain: false,
+  },
+  {
+    date: 'Automne 2026',
+    nom: 'Projet Frascuelo',
+    lieu: 'Montréal',
+    description: null,
+    participation: [
+      'Ateliers de médiation culturelle et de bibliothérapie approuvés et financés par le centre Sanaaq.',
+      'Activités alliant littérature, identité et communauté pour des publics en contexte d\'immigration.',
+    ],
+    lienLabel: null,
+    lien: null,
+    prochain: true,
+  },
+];
+
+const communautes = [
+  {
+    nom: 'Union des écrivaines et écrivains du Québec (UNEQ)',
+    description: 'Membre.',
+    lien: 'https://www.uneq.qc.ca',
+    lienLabel: 'uneq.qc.ca ↗',
+  },
+  {
+    nom: 'Arrimage — Îles-de-la-Madeleine',
+    description: 'Membre artiste de l\'organisme de développement culturel des Îles-de-la-Madeleine.',
+    lien: null,
+    lienLabel: null,
+  },
+  {
+    nom: 'Cristálida Éditions',
+    description: 'Directrice de la maison d\'édition québécoise consacrée à la littérature hispano-américaine.',
+    lien: 'https://cristalidaediciones.com',
+    lienLabel: 'cristalidaediciones.com ↗',
+  },
+];
+---
+
+<Layout title="Presse & Collaborations" description="Presse, événements et communautés littéraires d'Ana Núñez González.">
+
+  <h1 class="section-title">Presse &amp; Collaborations</h1>
+  <hr class="section-divider" />
+
+  <!-- SECTION 1: MÉDIAS -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">Dans les médias</h2>
+    <div class="medias-lista">
+      {medias.map((item) => (
+        <article class="media-card">
+          <div class="media-header">
+            <span class="media-nom">{item.media}</span>
+            {item.date && <span class="media-date">{item.date}</span>}
+          </div>
+          {item.titre && <p class="media-titre">«&nbsp;{item.titre}&nbsp;»</p>}
+          <p class="media-desc">{item.description}</p>
+          {item.lienLabel && (
+            item.lien
+              ? <a href={item.lien} target="_blank" rel="noopener" class="media-link">→ {item.lienLabel}</a>
+              : <span class="media-link-pending">→ {item.lienLabel}</span>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- SECTION 2: ÉVÉNEMENTS -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">Événements &amp; collaborations</h2>
+    <div class="eventos-lista">
+      {evenements.map((ev) => (
+        <article class="evento-card">
+          <div class="evento-fecha-col">
+            {ev.date && <span class="evento-fecha">{ev.date}</span>}
+            {ev.prochain && <span class="evento-badge">À venir</span>}
+          </div>
+          <div class="evento-info">
+            <h3 class="evento-nombre">{ev.nom}</h3>
+            {ev.lieu && <p class="evento-lugar">{ev.lieu}</p>}
+            {ev.description && <p class="evento-subdesc">{ev.description}</p>}
+            <ul class="evento-participacion">
+              {ev.participation.map((p) => <li>{p}</li>)}
+            </ul>
+            {ev.lienLabel && ev.lien && (
+              <a href={ev.lien} target="_blank" rel="noopener" class="evento-link">{ev.lienLabel} ↗</a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- SECTION 3: COMMUNAUTÉS -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">Communautés &amp; organismes</h2>
+    <ul class="comunidades-lista">
+      {communautes.map((c) => (
+        <li class="comunidad-item">
+          <h3 class="comunidad-nombre">{c.nom}</h3>
+          <p class="comunidad-desc">{c.description}</p>
+          {c.lien && c.lienLabel && (
+            <a href={c.lien} target="_blank" rel="noopener" class="evento-link">{c.lienLabel}</a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+</Layout>
+
+<style>
+  .bloque {
+    margin-bottom: 4rem;
+  }
+  .bloque-titulo {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.8rem;
+    display: inline-block;
+  }
+
+  /* Médias */
+  .medias-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .media-card {
+    padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(61,43,107,0.12);
+  }
+  .media-card:last-child { border-bottom: none; }
+  .media-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+  }
+  .media-nom {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  .media-date {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    font-style: italic;
+  }
+  .media-titre {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--color-text);
+    margin: 0 0 0.35rem;
+    line-height: 1.5;
+  }
+  .media-desc {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0 0 0.5rem;
+    line-height: 1.65;
+  }
+  .media-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  .media-link:hover { color: var(--color-accent); }
+  .media-link-pending {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-muted);
+  }
+
+  /* Événements */
+  .eventos-lista {
+    display: flex;
+    flex-direction: column;
+  }
+  .evento-card {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(61,43,107,0.12);
+  }
+  .evento-card:last-child { border-bottom: none; }
+  @media (max-width: 600px) {
+    .evento-card { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+  .evento-fecha-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 0.15rem;
+  }
+  .evento-fecha {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    line-height: 1.3;
+  }
+  .evento-badge {
+    display: inline-block;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.45rem;
+    border-radius: 3px;
+    align-self: flex-start;
+  }
+  .evento-nombre {
+    font-size: 1.15rem;
+    margin: 0 0 0.2rem;
+  }
+  .evento-lugar {
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin: 0 0 0.4rem;
+  }
+  .evento-subdesc {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    font-style: italic;
+    margin: 0 0 0.5rem;
+  }
+  .evento-participacion {
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+  .evento-participacion li { margin-bottom: 0.25rem; }
+  .evento-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  .evento-link:hover { color: var(--color-accent); }
+
+  /* Communautés */
+  .comunidades-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .comunidad-item {
+    border-left: 3px solid var(--color-secondary);
+    padding-left: 1.25rem;
+  }
+  .comunidad-nombre {
+    font-size: 1.1rem;
+    margin: 0 0 0.25rem;
+  }
+  .comunidad-desc {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0 0 0.4rem;
+    line-height: 1.65;
+  }
+</style>

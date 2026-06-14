@@ -15,7 +15,7 @@ export type Lang = keyof typeof ui;
 
 export const routes = {
   es: { home: '/', books: '/libros', collab: '/colaboraciones', contact: '/contacto' },
-  fr: { home: '/fr/', books: '/libros', collab: '/fr/presse', contact: '/contacto' },
+  fr: { home: '/fr/', books: '/libros', collab: '/fr/presse-collaborations', contact: '/contacto' },
 };
 
 /** Given the current pathname, return the URL in the other language. */
@@ -23,7 +23,8 @@ export function getAlternateUrl(pathname: string): string {
   const map: Record<string, string> = {
     '/': '/fr/',
     '/fr/': '/',
-    '/colaboraciones': '/fr/presse',
+    '/colaboraciones': '/fr/presse-collaborations',
+    '/fr/presse-collaborations': '/colaboraciones',
     '/fr/presse': '/colaboraciones',
   };
   const normalized = pathname.endsWith('/') ? pathname : pathname + '/';
