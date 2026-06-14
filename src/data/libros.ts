@@ -52,6 +52,7 @@ export const libros: Libro[] = [
     portada: '/images/libros/cronicas-domesticas.jpg',
     portadaFr: '/images/libros/chroniques-du-quotidien.jpg',
     compra: 'https://www.amazon.ca/-/fr/Cr%C3%B3nicas-dom%C3%A9sticas-Ana-Nunez-Gonzalez/dp/B09S5ZNBM8/',
+    compraFr: 'https://www.amazon.ca/-/fr/Chroniques-quotidien-f%C3%A9minin-Ana-Luna/dp/2925321496/',
     compraLabel: 'Comprar en Amazon ↗',
     compraLabelFr: 'Acheter sur Amazon ↗',
   },
