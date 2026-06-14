@@ -17,7 +17,7 @@ export const libros: Libro[] = [
     titulo: 'Mujeres rotas',
     anio: 2025,
     editorial: 'Cristálida Ediciones',
-    descripcion: 'Las protagonistas de estas historias han decidido vivir según sus propias reglas, sin importar los prejuicios ni las expectativas de los demás. Entre amores fallidos, deseos reprimidos, frustraciones y rebeldías silenciosas, Ana Núñez González construye un retrato intenso y conmovedor de mujeres que, aunque parezcan domesticadas, conservan intacta su libertad interior. Un libro lúcido, provocador y profundamente humano.',
+    descripcion: 'En estos relatos breves, Ana Luna explora con sensibilidad y precisión las complejidades de la condición humana, especialmente la experiencia femenina en momentos de crisis y transformación. Con una escritura sobria y poderosa, retrata vidas marcadas por la violencia, la pérdida y la resistencia. Un libro intenso y revelador que invita a reflexionar sobre las heridas de la existencia y la posibilidad de una verdadera emancipación.',
     description: 'Les protagonistes de ces histoires ont décidé de vivre selon leurs propres règles, sans se soucier des préjugés ni des attentes des autres. Entre amours déçues, désirs inassouvis, frustrations et révoltes silencieuses, Ana Núñez González dresse un portrait intense et émouvant de femmes qui, malgré les apparences, ont préservé leur liberté intérieure. Un livre lucide, provocateur et profondément humain.',
     portada: '/images/libros/mujeres-rotas.jpg',
     compra: 'https://www.amazon.ca/-/fr/Mujeres-rotas-Ana-Luna/dp/292544640X/',
