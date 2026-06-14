@@ -12,7 +12,7 @@ import { libros } from '../../data/libros';
     {libros.map((libro) => (
       <article class="libro-card">
         <div class="libro-portada">
-          <img src={libro.portada} alt={`Couverture de ${libro.titulo}`} />
+          <img src={libro.portadaFr ?? libro.portada} alt={`Couverture de ${libro.titulo}`} />
         </div>
         <div class="libro-info">
           <h2 class="libro-titulo">{libro.titulo}</h2>
@@ -22,6 +22,7 @@ import { libros } from '../../data/libros';
             </p>
           )}
           {libro.description && <p class="libro-desc">{libro.description}</p>}
+          {libro.noteFr && <p class="libro-note-fr">{libro.noteFr}</p>}
           {libro.cita && (
             <blockquote class="libro-cita">
               <p>{libro.cita}</p>
@@ -100,5 +101,11 @@ import { libros } from '../../data/libros';
     font-size: 0.82rem;
     color: var(--color-muted);
     font-style: normal;
+  }
+  .libro-note-fr {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-muted);
+    margin-bottom: 1rem;
   }
 </style>
