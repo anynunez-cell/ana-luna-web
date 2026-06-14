@@ -29,8 +29,8 @@ import { libros } from '../../data/libros';
               {libro.citaFuente && <footer class="libro-cita-fuente">— {libro.citaFuente}</footer>}
             </blockquote>
           )}
-          {libro.compra && (
-            <a href={libro.compra} target="_blank" rel="noopener" class="btn btn-primary">
+          {(libro.compraFr ?? libro.compra) && (
+            <a href={libro.compraFr ?? libro.compra!} target="_blank" rel="noopener" class="btn btn-primary">
               {libro.compraLabelFr}
             </a>
           )}

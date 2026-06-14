@@ -10,6 +10,7 @@ export interface Libro {
   portada: string;
   portadaFr?: string;
   compra: string | null;
+  compraFr?: string;
   compraLabel: string | null;
   compraLabelFr: string | null;
 }
@@ -36,8 +37,9 @@ export const libros: Libro[] = [
     portada: '/images/libros/adela-y-el-poder.jpg',
     portadaFr: '/images/libros/adela-et-le-pouvoir.jpg',
     compra: 'https://lasamericas.ca/fr/produits/36847/adela-y-el-poder-cristalida',
+    compraFr: 'https://www.amazon.ca/-/fr/Ad%C3%A8la-pouvoir-M%C3%A9moires-procureure-Havane/dp/2925321836/',
     compraLabel: 'Comprar (ES) ↗',
-    compraLabelFr: 'Acheter (FR) ↗',
+    compraLabelFr: 'Acheter sur Amazon ↗',
   },
   {
     titulo: 'Crónicas domésticas / Chroniques du quotidien',
