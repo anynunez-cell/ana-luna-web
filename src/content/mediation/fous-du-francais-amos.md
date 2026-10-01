@@ -14,4 +14,4 @@ officialLabel: "Lire le communiqué de la Ville d'Amos"
 lang: "fr"
 ---
 
-Un projet que j'ai conçu et porté à la Bibliothèque municipale d'Amos : des ateliers ludiques où l'apprentissage du français passe par la lecture, le jeu et la création. La bibliothèque y devient un lieu d'accueil, où l'on apprend la langue en la vivant.
+Un projet que j'ai conçu comme cheffe de division de la Bibliothèque municipale d'Amos, pour faire du français un outil d'intégration, et que Danaë Ouellet a piloté comme chargée de projet. Animés par le conteur Pierre Labrèche et l'auteur-compositeur-interprète François Désaulniers, les ateliers mêlaient contes, chansons, dessins et jeux de langue.
