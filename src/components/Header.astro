@@ -22,6 +22,9 @@ const alternateUrl = getAlternateUrl(pathname);
 			<ul class="nav-links" id="nav-links">
 				<li><a href={r.home}>{t.nav.home}</a></li>
 				<li><a href={r.books}>{t.nav.books}</a></li>
+				{r.mediation && t.nav.mediation && (
+					<li><a href={r.mediation}>{t.nav.mediation}</a></li>
+				)}
 				<li><a href={r.collab}>{t.nav.collab}</a></li>
 				<li><a href={r.contact}>{t.nav.contact}</a></li>
 				<li class="lang-item">

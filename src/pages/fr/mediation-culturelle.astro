@@ -1,0 +1,317 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import { getStatus, statusLabelFr } from '../../utils/mediationStatus';
+
+const allEntries = await getCollection('mediation', ({ data }) => !data.draft && data.lang === 'fr');
+
+const now = new Date();
+
+const withStatus = allEntries.map((entry) => ({
+  ...entry,
+  status: getStatus(entry.data.startDate, entry.data.endDate, now),
+}));
+
+const upcoming = withStatus
+  .filter((e) => e.status === 'a-venir' || e.status === 'en-cours')
+  .sort((a, b) => a.data.startDate.getTime() - b.data.startDate.getTime());
+
+const past = withStatus
+  .filter((e) => e.status === 'realise')
+  .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+
+// Pre-render markdown bodies
+const renderedUpcoming = await Promise.all(upcoming.map(async (e) => ({ ...e, rendered: await render(e) })));
+const renderedPast = await Promise.all(past.map(async (e) => ({ ...e, rendered: await render(e) })));
+---
+
+<Layout
+  title="Médiation culturelle — Ana Luna"
+  description="Ateliers de médiation culturelle d'Ana Núñez González : de la lecture à la création, pour enfants, jeunes et adultes. Québec, Canada."
+>
+
+  <h1 class="section-title">Médiation culturelle</h1>
+  <hr class="section-divider" />
+
+  <p class="intro">
+    La médiation culturelle prolonge naturellement mon travail d'écrivaine et de bibliothécaire&nbsp;: faire du livre un lieu de rencontre. Mes ateliers invitent enfants, jeunes et adultes à passer de la lecture à la création, et à explorer, à travers les histoires, la langue, la mémoire et l'identité.
+  </p>
+
+  <!-- EN COURS ET À VENIR -->
+  <section class="bloque">
+    <h2 class="bloque-titulo">En cours et à venir</h2>
+    {upcoming.length === 0 ? (
+      <p class="empty-state">
+        Aucun atelier n'est programmé pour le moment. Vous aimeriez en accueillir un ?{' '}
+        <a href="/fr/contact">Écrivez-moi</a>.
+      </p>
+    ) : (
+      <div class="ateliers-lista">
+        {renderedUpcoming.map(({ data, rendered, status }) => {
+          const { Content } = rendered;
+          return (
+            <article class="atelier-card">
+              {data.image && (
+                <div class="atelier-image">
+                  <img src={data.image} alt={data.imageAlt ?? data.title} />
+                </div>
+              )}
+              <div class="atelier-body">
+                <div class="atelier-header">
+                  <div>
+                    <h3 class="atelier-titre">{data.title}</h3>
+                    {data.tagline && <p class="atelier-tagline">{data.tagline}</p>}
+                  </div>
+                  <span class={`atelier-badge badge-${status}`}>{statusLabelFr[status]}</span>
+                </div>
+                <p class="atelier-meta">
+                  <span>{data.format}</span>
+                  <span class="sep">·</span>
+                  <span>{data.audience}</span>
+                  <span class="sep">·</span>
+                  <span>{data.venue}, {data.city}</span>
+                </p>
+                <p class="atelier-dates">
+                  {data.schedule ?? data.startDate.toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  {data.price && <span class="atelier-price"> · {data.price}</span>}
+                </p>
+                <div class="atelier-content prose">
+                  <Content />
+                </div>
+                {data.partners && <p class="atelier-partners">{data.partners}</p>}
+                {data.officialUrl && data.officialLabel && (
+                  <a href={data.officialUrl} target="_blank" rel="noopener" class="evento-link">
+                    {data.officialLabel} ↗
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    )}
+  </section>
+
+  <!-- RÉALISATIONS -->
+  {renderedPast.length > 0 && (
+    <section class="bloque">
+      <h2 class="bloque-titulo">Réalisations</h2>
+      <div class="ateliers-lista">
+        {renderedPast.map(({ data, rendered, status }) => {
+          const { Content } = rendered;
+          return (
+            <article class="atelier-card">
+              {data.image && (
+                <div class="atelier-image">
+                  <img src={data.image} alt={data.imageAlt ?? data.title} />
+                </div>
+              )}
+              <div class="atelier-body">
+                <div class="atelier-header">
+                  <div>
+                    <h3 class="atelier-titre">{data.title}</h3>
+                    {data.tagline && <p class="atelier-tagline">{data.tagline}</p>}
+                  </div>
+                  <span class={`atelier-badge badge-${status}`}>{statusLabelFr[status]}</span>
+                </div>
+                <p class="atelier-meta">
+                  <span>{data.format}</span>
+                  <span class="sep">·</span>
+                  <span>{data.audience}</span>
+                  <span class="sep">·</span>
+                  <span>{data.venue}, {data.city}</span>
+                </p>
+                <p class="atelier-dates">
+                  {data.schedule ?? data.startDate.toLocaleDateString('fr-CA', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </p>
+                <div class="atelier-content prose">
+                  <Content />
+                </div>
+                {data.partners && <p class="atelier-partners">{data.partners}</p>}
+                {data.officialUrl && data.officialLabel && (
+                  <a href={data.officialUrl} target="_blank" rel="noopener" class="evento-link">
+                    {data.officialLabel} ↗
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- ACCUEILLIR UN ATELIER -->
+  <section class="bloque cta-section">
+    <h2 class="bloque-titulo">Accueillir un atelier</h2>
+    <p class="cta-text">
+      Bibliothèques, écoles, centres culturels, organismes communautaires&nbsp;: mes ateliers s'adaptent à votre public, à votre calendrier et à votre projet. Écrivez-moi pour en discuter.
+    </p>
+    <a href="/fr/contact" class="btn btn-primary">Me contacter</a>
+  </section>
+
+</Layout>
+
+<style>
+  .intro {
+    max-width: 680px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0 0 3.5rem;
+  }
+
+  .bloque {
+    margin-bottom: 4rem;
+  }
+  .bloque-titulo {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.8rem;
+    display: inline-block;
+  }
+
+  .empty-state {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.7;
+  }
+  .empty-state a {
+    color: var(--color-secondary);
+    font-weight: 700;
+  }
+
+  .ateliers-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .atelier-card {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(61,43,107,0.12);
+  }
+  .atelier-card:last-child { border-bottom: none; padding-bottom: 0; }
+
+  @media (max-width: 700px) {
+    .atelier-card {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  .atelier-image img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 6px;
+    box-shadow: var(--box-shadow);
+    display: block;
+  }
+
+  .atelier-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .atelier-titre {
+    font-size: 1.4rem;
+    margin: 0 0 0.15rem;
+    color: var(--color-primary);
+  }
+  .atelier-tagline {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .atelier-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-a-venir {
+    background: var(--color-accent);
+    color: var(--color-primary);
+  }
+  .badge-en-cours {
+    background: var(--color-secondary);
+    color: #fff;
+  }
+  .badge-realise {
+    background: rgba(61,43,107,0.12);
+    color: var(--color-primary);
+  }
+
+  .atelier-meta {
+    font-size: 0.88rem;
+    color: var(--color-muted);
+    margin: 0 0 0.35rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    align-items: center;
+  }
+  .sep { color: var(--color-accent); }
+
+  .atelier-dates {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin: 0 0 1rem;
+  }
+  .atelier-price {
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  .atelier-content {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+  .atelier-content p { margin: 0 0 0.5rem; }
+
+  .atelier-partners {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    font-style: italic;
+    margin: 0 0 0.75rem;
+    line-height: 1.5;
+  }
+
+  .evento-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
+  .evento-link:hover { color: var(--color-accent); }
+
+  .cta-section {
+    border-top: 1px solid rgba(61,43,107,0.12);
+    padding-top: 3rem;
+  }
+  .cta-text {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0 0 1.5rem;
+  }
+</style>

@@ -1,11 +1,11 @@
 export const ui = {
   es: {
-    nav: { home: 'Inicio', books: 'Libros', collab: 'Colaboraciones', contact: 'Contacto' },
+    nav: { home: 'Inicio', books: 'Libros', mediation: null, collab: 'Colaboraciones', contact: 'Contacto' },
     logoSub: 'escritora',
     langLabel: 'FR',
   },
   fr: {
-    nav: { home: 'Accueil', books: 'Livres', collab: 'Presse', contact: 'Contact' },
+    nav: { home: 'Accueil', books: 'Livres', mediation: 'Médiation', collab: 'Presse', contact: 'Contact' },
     logoSub: 'écrivaine',
     langLabel: 'ES',
   },
@@ -14,8 +14,8 @@ export const ui = {
 export type Lang = keyof typeof ui;
 
 export const routes = {
-  es: { home: '/', books: '/libros', collab: '/colaboraciones', contact: '/contacto' },
-  fr: { home: '/fr/', books: '/fr/livres', collab: '/fr/presse-collaborations', contact: '/fr/contact' },
+  es: { home: '/', books: '/libros', mediation: null, collab: '/colaboraciones', contact: '/contacto' },
+  fr: { home: '/fr/', books: '/fr/livres', mediation: '/fr/mediation-culturelle', collab: '/fr/presse-collaborations', contact: '/fr/contact' },
 };
 
 /** Given the current pathname, return the URL in the other language. */
@@ -30,6 +30,7 @@ export function getAlternateUrl(pathname: string): string {
     '/fr/livres': '/libros',
     '/contacto': '/fr/contact',
     '/fr/contact': '/contacto',
+    '/fr/mediation-culturelle': '/',
   };
   const normalized = pathname.endsWith('/') ? pathname : pathname + '/';
   const normalizedLookup = map[pathname] ?? map[normalized];

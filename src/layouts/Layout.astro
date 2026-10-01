@@ -17,7 +17,7 @@ const {
   image,
 } = Astro.props;
 
-const pageTitle = title === SITE_TITLE ? title : `${title} — ${SITE_TITLE}`;
+const pageTitle = (title === SITE_TITLE || title.includes(SITE_TITLE)) ? title : `${title} — ${SITE_TITLE}`;
 const lang = getLang(Astro.url.pathname);
 ---
 

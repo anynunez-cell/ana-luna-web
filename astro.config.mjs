@@ -5,4 +5,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://ananunezgonzalez.com',
   integrations: [sitemap()],
+  redirects: {
+    '/fr/presse': '/fr/presse-collaborations',
+  },
 });

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getStatus, statusLabelFr } from '../../utils/mediationStatus';
 
 const medias = [
   {
@@ -63,6 +64,8 @@ const medias = [
 const evenements = [
   {
     date: '25–28 juin 2026',
+    startDate: new Date('2026-06-25'),
+    endDate: new Date('2026-06-28'),
     nom: 'Festival littéraire des Îles · Portages',
     lieu: 'Îles-de-la-Madeleine',
     description: '10e édition · Présidence d\'honneur : Naomi Fontaine',
@@ -74,10 +77,11 @@ const evenements = [
     ],
     lienLabel: 'Voir la programmation complète',
     lien: 'https://www.sitedelacote.ca/portages',
-    prochain: true,
   },
   {
     date: 'Octobre 2026',
+    startDate: new Date('2026-10-01'),
+    endDate: new Date('2026-10-31'),
     nom: 'Foire ibéro-américaine du livre du Canada',
     lieu: 'Ottawa',
     description: null,
@@ -87,60 +91,63 @@ const evenements = [
     ],
     lienLabel: null,
     lien: null,
-    prochain: true,
+  },
+  {
+    date: 'Automne 2026',
+    startDate: new Date('2026-09-12'),
+    endDate: new Date('2026-11-14'),
+    nom: 'Apprivoiser l\'histoire',
+    lieu: 'Centre Sanaaq, Montréal',
+    description: null,
+    participation: [
+      'Parcours de huit ateliers de création littéraire pour les 8 à 12 ans, à partir du récit Frascuelo, el perro fiero.',
+    ],
+    lienLabel: 'Voir la page Médiation culturelle',
+    lien: '/fr/mediation-culturelle',
   },
   {
     date: '2024',
+    startDate: new Date('2024-01-01'),
+    endDate: new Date('2024-12-31'),
     nom: 'Foire ibéro-américaine du livre du Canada',
     lieu: 'Ottawa',
     description: null,
     participation: ['Participation avec Cristálida Éditions.'],
     lienLabel: null,
     lien: null,
-    prochain: false,
   },
   {
     date: null,
+    startDate: null,
+    endDate: null,
     nom: 'Festival de lettres L\'âge de l\'oiseau',
     lieu: 'Ottawa',
     description: null,
     participation: ['Participation dans le cadre des activités littéraires francophones.'],
     lienLabel: null,
     lien: null,
-    prochain: false,
   },
   {
     date: null,
+    startDate: null,
+    endDate: null,
     nom: 'Salon du livre de l\'Abitibi-Témiscamingue',
     lieu: null,
     description: null,
     participation: ['Participations régulières comme autrice et promotrice de la littérature hispano-américaine.'],
     lienLabel: null,
     lien: null,
-    prochain: false,
   },
   {
     date: null,
+    startDate: null,
+    endDate: null,
     nom: 'Foire internationale du livre de La Havane',
     lieu: null,
     description: null,
     participation: ['Participation comme autrice et éditrice.'],
     lienLabel: null,
     lien: null,
-    prochain: false,
-  },
-  {
-    date: 'Automne 2026',
-    nom: 'Projet Frascuelo',
-    lieu: 'Montréal',
-    description: null,
-    participation: [
-      'Ateliers de médiation culturelle et de bibliothérapie approuvés et financés par le centre Sanaaq.',
-      'Activités alliant littérature, identité et communauté pour des publics en contexte d\'immigration.',
-    ],
-    lienLabel: null,
-    lien: null,
-    prochain: true,
   },
 ];
 
@@ -197,11 +204,14 @@ const communautes = [
   <section class="bloque">
     <h2 class="bloque-titulo">Événements &amp; collaborations</h2>
     <div class="eventos-lista">
-      {evenements.map((ev) => (
+      {evenements.map((ev) => {
+        const status = ev.startDate ? getStatus(ev.startDate, ev.endDate ?? undefined) : null;
+        const badgeLabel = status && status !== 'realise' ? statusLabelFr[status] : null;
+        return (
         <article class="evento-card">
           <div class="evento-fecha-col">
             {ev.date && <span class="evento-fecha">{ev.date}</span>}
-            {ev.prochain && <span class="evento-badge">À venir</span>}
+            {badgeLabel && <span class="evento-badge">{badgeLabel}</span>}
           </div>
           <div class="evento-info">
             <h3 class="evento-nombre">{ev.nom}</h3>
@@ -215,7 +225,8 @@ const communautes = [
             )}
           </div>
         </article>
-      ))}
+        );
+      })}
     </div>
   </section>
 

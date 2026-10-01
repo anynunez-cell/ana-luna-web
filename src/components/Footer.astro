@@ -1,6 +1,9 @@
 ---
 import { SITE_TITLE, SITE_AUTHOR_FORMAL, SUBSTACK_URL } from '../consts';
+import { getLang } from '../i18n/ui';
 const today = new Date();
+const lang = getLang(Astro.url.pathname);
+const isFr = lang === 'fr';
 ---
 
 <footer>
@@ -8,18 +11,29 @@ const today = new Date();
 		<div class="footer-brand">
 			<p class="footer-name">{SITE_TITLE}</p>
 			<p class="footer-formal">{SITE_AUTHOR_FORMAL}</p>
-			<p class="footer-tagline">Escritora · Quebec, Canadá</p>
+			<p class="footer-tagline">{isFr ? 'Écrivaine · Québec, Canada' : 'Escritora · Quebec, Canadá'}</p>
 		</div>
-		<nav class="footer-nav">
-			<a href="/">Inicio</a>
-			<a href="/libros">Libros</a>
-			<a href="/colaboraciones">Colaboraciones</a>
-			<a href="/contacto">Contacto</a>
-			<a href={SUBSTACK_URL} target="_blank" rel="noopener">Substack ↗</a>
-		</nav>
+		{isFr ? (
+			<nav class="footer-nav">
+				<a href="/fr/">Accueil</a>
+				<a href="/fr/livres">Livres</a>
+				<a href="/fr/mediation-culturelle">Médiation</a>
+				<a href="/fr/presse-collaborations">Presse</a>
+				<a href="/fr/contact">Contact</a>
+				<a href={SUBSTACK_URL} target="_blank" rel="noopener">Substack ↗</a>
+			</nav>
+		) : (
+			<nav class="footer-nav">
+				<a href="/">Inicio</a>
+				<a href="/libros">Libros</a>
+				<a href="/colaboraciones">Colaboraciones</a>
+				<a href="/contacto">Contacto</a>
+				<a href={SUBSTACK_URL} target="_blank" rel="noopener">Substack ↗</a>
+			</nav>
+		)}
 	</div>
 	<div class="footer-bottom">
-		<p>&copy; {today.getFullYear()} {SITE_AUTHOR_FORMAL}. Todos los derechos reservados.</p>
+		<p>&copy; {today.getFullYear()} {SITE_AUTHOR_FORMAL}. {isFr ? 'Tous droits réservés.' : 'Todos los derechos reservados.'}</p>
 	</div>
 </footer>
 
